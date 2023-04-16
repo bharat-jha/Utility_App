@@ -1,0 +1,57 @@
+
+{% extends 'todo/Base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{title}} {% endblock title %}
+{% block content %}
+ 
+<div class="container">
+{% if messages %} 
+{% for message in messages %}
+<span {% if message.tags %} class="alert-{{message.tags}}" {% endif %}> {{message.tags }}:-{{message}} </span>
+{% endfor %}
+{% endif %}
+
+</div>
+<div class="col-sm-9 mt-2">
+<h5 class="text-center alert alert-primary">{{user|capfirst}} : -  Your Notes List  </h5>
+ {% if notes %}
+    <table class="table mt-2">
+    <tbody >
+    <thead>
+    <tr>
+      <th scope="col"> Sl. No</th>
+      <th scope="col">Date_create</th>
+      <th scope="col">status</th>
+      <th scope="col">Topic</th>
+      <th scope="col">Description</th>
+      <th scope="col">Attached Pics</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+   {% for item in notes %}
+    <tr>
+      <th scope="row">{{forloop.counter}}.</th>
+      <td> {{ item.date_create }}</td>
+      <td>{{item.status}}</td>
+      <td>{{item.Topic }}</td>
+      <td>{{item.Description|truncatechars:25 }}</td>
+      <td> 
+      {% if item.pic %}
+        <img src="{{ item.pic.url }}">
+      {% endif %}  
+      </td> 
+      <td>
+      <a class="btn btn-warning" href="{% url 'notes:update' item.id %}" role="button">Detail/Update</a>
+      <a class="btn btn-danger mt-1 my-1" href="{% url 'notes:delete' item.id %}" role="button">Delete</a>
+      </td>
+    </tr>
+   {% endfor %}
+    </tbody>
+{% else %}
+</table>
+<h4 class="text-center"> No Data Availiable </h4>
+{% endif %}
+<small> <a class=" text-red mt-2" href="{% url 'notes:notes_entry' %}"> click Here to Add Notes</a></small>
+</div>
+</div>
+{% endblock content %}

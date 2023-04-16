@@ -1,0 +1,48 @@
+{% extends 'todo/Base.html' %}
+{% block title %} {{title}} {% endblock title %}
+{% block content %}
+  <h4 class="alert alert-primary center mt-2"> Planned Event for today </h4>
+  {% if object_list %}
+<table class="table mt-2">
+    <tbody >
+    <thead>
+    <tr>
+      <th scope="col"> Sl. No</th>
+      <th scope="col">Event Title</th>
+      <th scope="col"> Event Description</th>
+      <th scope="col">Start time </th>
+      <th scope="col">End time </th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+    
+        {% for article in object_list %}
+          <td> {{forloop.counter }} </td>
+          <td> {{article.title}} </td>
+         <td> {{article.description}} </td> 
+        <td> {{article.start_time}} </td>
+        <td> {{article.end_time}} </td>
+
+         <td> 
+      <a class="btn btn-warning text-white " href="{% url 'cal:event_edit' article.id %}" role="button">Edit/Update</a>
+      <a class="btn btn-danger text-white mt-1" href="{% url 'cal:event_delete' article.id %}" role="button">Delete</a>
+      </td>
+    </tr>
+   {% endfor %}
+    </tbody>
+{% else %}
+</table>
+<h3 class="text-center"> No Events for today </h3>
+{% endif %}
+
+<div class="clearfix">
+	<a class="btn btn-warning text-white left  ml-3 mt-2" href="{% url 'cal:calendar' %}?{{ prev_month }}"> Previous Month </a>
+	<a class="btn btn-primary left text-white ml-5 mt-2" href="{% url 'cal:event_new' %}"> Add Event</a>
+	<a class="btn btn-warning left text-white ml-7 mt-2" href="{% url 'cal:calendar' %}?{{ next_month }}"> Next Month </a>
+</div>
+<h3>  </h3>
+
+<div="container">
+{{ calendar }}
+</div>
+{% endblock %}    

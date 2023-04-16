@@ -1,0 +1,86 @@
+
+{% extends 'todo/Base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{title}} {% endblock title %}
+{% block content %}
+ 
+<div class="container">
+<div class="row">
+<div class="col-sm-3 mt-2">
+<h5 class="text-center alert alert-primary"> Add New Task </h5>
+{% if messages %} 
+{% for message in messages %}
+<span {% if message.tags %} class="alert-{{message.tags}}" {% endif %}> {{message.tags }}:-{{message}} </span>
+{% endfor %}
+{% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{fm|crispy }}
+    <input  class="btn btn-primary text-white mt-2" type="submit" value="Submit">
+</form>
+</div>
+<div class="col-sm-9 mt-2">
+<h5 class="text-center alert alert-primary">{{user|capfirst}} : -  Your Do List For Today ({% now "dS M,Y" %}) </h5>
+ {% if todo %}
+    <table class="table mt-2">
+    <tbody >
+    <thead>
+    <tr>
+      <th scope="col"> Sl. No</th>
+      <th scope="col">Category</th>
+      <th scope="col">Description</th>
+     
+      <th scope="col">Status</th>
+      <th scope="col">Priority</th>
+      <th scope="col">Start_dt</th>
+      <th scope="col">End_dt</th>
+      <th scope="col">Action</th>
+    </tr>
+  </thead>
+   {% for item in todo %}
+    <tr>
+      <th scope="row">{{forloop.counter}}.</th>
+      <td> 
+      {% if item.Category == 'P' %}
+          PERSONAL 
+          {% else %}
+      OFFICIAL
+      {% endif %}
+      </td>
+      <td>{{item.Description}}</td>
+     
+      <td>
+        {% if item.Status == 'S' %}
+           Started
+      {% elif item.Status == 'W'  %}
+           Work In Progress
+      {% else %}
+          Completed
+      {% endif %}
+      </td>
+      <td> 
+      {% if item.priority == 'L' %}
+           3
+      {% elif item.priority == 'M'  %}
+           2
+      {% else %}
+          1
+      {% endif %}
+      </td>
+      <td>{{item.Start_dt}}
+      <td>{{item.End_dt}} </td> 
+      <td>
+           
+      <a class="btn btn-warning text-white " href="{% url 'update' item.id %}" role="button">Edit/Update</a>
+      <a class="btn btn-danger text-white mt-1" href="{% url 'delete' item.id %}" role="button">Delete</a>
+      </td>
+    </tr>
+   {% endfor %}
+    </tbody>
+{% else %}
+</table>
+<h3 class="text-center"> No To-Do for today </h3>
+{% endif %}
+</div>
+</div>
+{% endblock content %}

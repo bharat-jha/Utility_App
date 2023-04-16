@@ -1,0 +1,30 @@
+{% extends 'todo/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Word Lookup
+{% endblock title %}
+<!-- Our Codes Here... -->
+{% block content %}
+<h3> {{word}} </h3>
+    <span class="text-center text-info mt-3"> Please Enter the word to be Searched...</span>
+    {% if messages %}
+    {% for message in messages %}
+    <p {% if message.tags %} class="alert-{{message.tags}}" {% endif %} >
+      {{ message }}
+      </p>
+    {% endfor %}
+{% endif %}
+<div class="row">
+    <div class="form-group col-xs-6">
+        <form class='mb-3 mx-3 form-label form-control-sm'  method="post">
+            {% csrf_token %}
+            {{fm|crispy}}
+            <input class="mt-2 mx-1 btn btn-primary"  type="submit"  value="Submit" onclick="location.href='{% url 'Search' %}'" >
+            <a class="mt-2 mx-3 btn btn-primary" href="{% url 'home' %}"> Go Back</a>
+        </form>
+    </div>
+</div>
+<a class="mt-2 mx-3 btn btn-info"href="{% url 'Dashboard' %}">Check you word search History</a>
+
+{% endblock content %}

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+{% load static %}
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>{% block title %} Utility APP {% endblock title %}</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- CSS only -->
+        
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="{% static 'todo/css/style.css' %}">
+    </head>
+    <body>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="{% url 'accounts:Aboutus' %}">About Us</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+        <a class="nav-link" href="{% url 'accounts:contact' %}">Contact <span class="sr-only">{{user}}</span></a>
+        </li>
+
+        {% if user.is_authenticated %}
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'home' %}">ToDo</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'notes:notes_list' %}">Notes</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'cal:calendar' %}">Appointments</a>
+        </li>
+        <li class="nav-item active">
+            <a class="nav-link" href="{% url 'Dashboard' %}">DashBoard</a>
+        </li>
+        <!-- This is drop down of the Nave Bar -->
+        <li class="nav-item dropdown">
+            <a class="nav-link text-white  dropdown-toggle" href="{% url 'lookup' %}" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Other Utilities
+            </a>
+            <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+              <li><a class="dropdown-item" href="#">Weather </a></li>
+              <li><a class="dropdown-item" href="#"> News Headlines </a></li>
+              <li><hr class="dropdown-divider" href="#">Curency Convertor</li>
+              <li><a class="dropdown-item" href="#">Calculator</a></li>
+            </ul>
+          </li>
+          <!-- Code completed for the Nave bar -->
+         </ul> 
+         <ul>
+              <li class="nav-item active">
+            <a class="mt-2 nav-link text-white " href="{% url 'accounts:profile' %}">Profile(@{{user.username|capfirst}})</a>
+        </li>  
+        </ul>
+          <ul class="nav justify-content-end">
+            <li class="nav-item">
+            <a class="nav-link text-white pull-right color:white" href="{% url 'accounts:password_change' %}"> Change Password </a>
+         </ul>
+         <ul class="nav justify-content-end">
+            <li class="nav-item">
+            <a class="nav-link text-white pull-right color:white" href="{% url 'accounts:Logout' %}">Logout </a>
+        </li>
+       
+    {% else %}
+         </ul>   
+        </li>
+        <ul class="nav justify-content-end">
+         <li class="nav-item active">
+            <a class="nav-link  text-white pull-right color:white" href="{% url 'accounts:Login' %}">Login</a>
+        </li>
+        </ul>  
+    {% endif %}
+    </nav>
+    {% block content %}
+    {% endblock content %}
+  <!-- Adding JS script for the bootstrapping .... -->
+    <script src="{% static 'todo/js/jquery.js' %}" async defer></script>
+    <script src="{% static 'todo/js/popper.js' %}" async defer></script>
+    <script src="{% static 'todo/js/bootstrap.js' %}" async defer></script>
+    </body>
+    </html>

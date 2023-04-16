@@ -1,0 +1,22 @@
+{% extends 'todo/Base.html' %}
+{% load crispy_forms_tags %}
+{% block title %} {{title}} {% endblock title %}
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-sm-3 mt-1">
+<h5 class="text-center alert alert-primary"> Update Your Task </h5>
+{% if messages %} 
+    {% for message in messages %}
+        {{message}} 
+    {% endfor %}
+{% endif %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{fm|crispy }}
+    <input  class="btn btn-primary text-white mt-2" type="submit" value="Submit">
+    <a class="btn btn-primary text-white mt-2"  href="{% url 'home'%}" role="button">Home</a></small>
+</form>
+</div>
+
+{% endblock content %}

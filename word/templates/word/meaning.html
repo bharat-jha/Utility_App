@@ -1,0 +1,18 @@
+{% extends 'todo/base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %}
+    Word Meaning 
+{% endblock title %}
+<body>
+    {% if messages %}
+    {% for message in messages %}
+    <p {% if message.tags %} class="alert-{{message.tags}}" {% endif %} >
+      {{ message }}
+      </p>
+      {% endfor %}
+      {% endif %}
+      {% block content %}
+    <h5 class="text-center mt-3"> {{word}} - {{meaning}} </h4>
+    <a href="{% url 'lookup' %}">Go Back</a>
+{% endblock content %}

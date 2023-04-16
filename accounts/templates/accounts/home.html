@@ -1,0 +1,11 @@
+{% extends 'todo/Base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} {{title}} {% endblock title%}    
+{% block content %}
+<div class="container">
+<div class="row">
+<div class="col-sm-6 mt-2">
+<h3 > This is Home Page  </h3>
+<img src="{% static 'account/images/Home_Page.jpeg' %}" alt="Home Page Coming Soon">
+{% endblock content %}

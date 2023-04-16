@@ -1,0 +1,28 @@
+{% extends 'todo/Base.html' %}
+{% load static %}
+{% load crispy_forms_tags %}
+{% block title %} Registration Page {% endblock title%}  
+{% block content %}
+
+	<div  class="container px-5 py-6 mt-3 mx-auto">
+		<div class="container-contact1">
+        <h4 class="text-info text-center mt-3 display-5"> <small>Create Your Co-Ordinates Here... </small> </h4>
+        <div class="container">
+            <div class="row">
+               <div class="col-sm-6 mt-2">
+			      <form action="" method="POST">
+                        {% csrf_token %}
+                        {{form|crispy }}
+                    <input  class="btn btn-primary text-white mt-2" type="submit" value="Submit">
+                   </form>
+                   <a class="text-primary mt-2" href="{% url 'accounts:Login' %}"><small>Already have Account..kindly click Here</small></a>
+                </div>
+                 <div class="col-sm-6 mt-2">
+                 <img class="img-responsive" src="{% static "accounts/images/img-01.png" %}" alt="No photo">
+
+                </div>
+</div> 
+</div>
+{% endblock content %}
+
+

@@ -1,0 +1,98 @@
+body {
+  color: #000;
+  overflow-x: hidden;
+  height: 100%;
+  background-image: linear-gradient(to right, #e8e8f3, #f3f0e6);
+  background-repeat: no-repeat
+}
+
+a:link {
+  color: white(177,168,168);;
+  text-decoration: none;
+}
+
+h4,h2,h1,h3,h4{
+    color: hsl(253, 29%, 44%);
+}
+table, th, td {
+    border:1px solid rgba(190, 183, 183, 0.308);
+  }
+  
+img {
+    border-radius: 20%;
+    height: 100%;
+    width: 100%;
+  }
+ .success {
+   color: rgb(18, 40, 236);
+   background:green;
+
+ }
+ 
+ .calendar {
+  width: 80%;
+  margin: auto;
+  font-size: 13px;
+}
+
+.calendar tr, .calendar td {
+  border: 1px solid black;
+}
+
+.calendar th {
+  padding: 10px;
+  text-align: center;
+  font-size: 18px;
+}
+
+.calendar td {
+  width: 100px;
+  height: 150px;
+  padding: 20px 5px 5px 5px;
+}
+
+.month {
+  font-size: 50px;
+}
+
+.date {
+  font-size: 16px;
+}
+
+.clearfix {
+  margin: 15px;
+}
+
+.form {
+  margin: auto;
+  color :rgb(185, 110, 110);
+}
+
+.form-control, .form-control:focus{
+  background-color: rgb(177,168,168);
+
+}
+
+.btn {
+  color: grey;
+}
+
+.social-link {
+  width: 30px;
+  height: 30px;
+  border: 1px solid #ddd;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #666;
+  border-radius: 50%;
+  transition: all 0.3s;
+  font-size: 0.9rem;
+}
+
+.social-link:hover,
+.social-link:focus {
+  background: #ddd;
+  text-decoration: none;
+  color: #555;
+}
