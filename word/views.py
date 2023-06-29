@@ -53,14 +53,14 @@ def newsheadline(contry='in',category='business'):
     url = 'https://newsapi.org/v2/top-headlines?country=in&category='+category+'&apiKey=26f18f08ef6945bf92950781cb67bc3e'
     response = requests.get(url)
     news_dict = response.json()['articles'][2:12]
- 
+    print(news_dict)
     i = 1
     for new in news_dict:
         news.append([new['title'],new['url']])
  
         i= i+1 
 
-    return(news)
+    return(news,category)
 
 # Create your views here.
 @login_required
@@ -102,10 +102,10 @@ def dashboard(request):
     words = Vocab.objects.filter(user_id = request.user).order_by('-search_dt')[:5]
  
     city,country = ipInfo()
-
+    print(city,country)
     r = requests.get('http://api.openweathermap.org/data/2.5/weather?q='+str(city) +'&units=metric&APPID=8b3e4d8fed51d39bcae7a655315a5f4f')
     weather_dict = r.json() 
-    news =  newsheadline(contry=country,category='sport')
+    news,category =  newsheadline(contry=country,category='sport')
 
     humidity = weather_dict['main']['humidity']
     feels_like = weather_dict['main']['feels_like']
@@ -123,6 +123,7 @@ def dashboard(request):
         'current_temp': temp,
         'wind_direction': wind_direction,
         'humidity': humidity,
-        'news':news
+        'news':news,
+        'category':category
     }
     return render(request, 'word/dashboard.html', context=context)

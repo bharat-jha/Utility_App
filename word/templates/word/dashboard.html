@@ -10,21 +10,21 @@
 <br>
 <table style="mx-3 width:70%">
   <tr>
-    <th style="text-center background-color:white "> Max_Temp(in Degree) </th>
-    <th style="text-center background-color:grey"> Minimum_Temperature(in Degree) </th>
-    <th style="text-center background-color:grey" > Current_Temperature(in Degree) </th> 
-    <th style="text-center background-color:grey"> Wind_Speed(Miles/Hr) </th>
-    <th style="text-center background-color:grey"> Humidity </th>
+    <th style="text-center background-color:black "> Max_Temp(in Degree) </th>
+    <th style="text-center background-color:black"> Minimum_Temperature(in Degree) </th>
+    <th style="text-center background-color:black" > Current_Temperature(in Degree) </th> 
+    <th style="text-center background-color:black"> Wind_Speed(Miles/Hr) </th>
+    <th style="text-center background-color:black"> Humidity </th>
   </tr>
   <tr>
-    <th  class="text-center background-color:black"> {{temp_max}}</th>
-    <th class="text-center background-color:black"> {{temp_min}}</th>
-    <th  class="text-center background-color:black">{{current_temp}}</th>
-    <th  class="text-center background-color:black">{{wind_direction}}</th> 
-    <th  class="text-center background-color:black"> {{humidity}}</th>
+    <th  style="text-center background-color:grey"> {{temp_max}}</th>
+    <th style="text-center background-color:grey"> {{temp_min}}</th>
+    <th  style="text-center background-color:grey">{{current_temp}}</th>
+    <th  style="text-center background-color:grey">{{wind_direction}}</th> 
+    <th  style="text-center background-color:grey"> {{humidity}}</th>
 </tr>
 </table>
-   <h4 class="text-center mt-3 alert-info"> Trending  {{country|capfirst}}'s Business News </h4>
+   <h4 class="text-center mt-3 alert-info"> Trending  {{country|capfirst}}'s {{category|capfirst}} </h4>
    <table style="width:80% mt-3 mx:10px my:5px ">
     <tr>
       <th style="text-center background-color:grey"> Sl.No </th>

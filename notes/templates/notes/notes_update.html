@@ -4,8 +4,8 @@
 {% block content %}
 <div class="container">
 <div class="row">
-<div class="col-sm-3 mt-1">
-<h5 class="text-center alert alert-primary"> Update Your Task </h5>
+<div class="col-sm-6 mt-1">
+<h5 class="text-center alert alert-primary"> Update Your Notes Here... </h5>
 {% if messages %} 
     {% for message in messages %}
         {{message}} 
@@ -14,8 +14,8 @@
 <form action="" method="POST">
     {% csrf_token %}
     {{fm|crispy }}
-    <input  class="btn btn-primary mt-2" type="submit" value="Submit">
-    <a class="btn btn-primary mt-2"  href="{% url 'notes:notes_list' %}" role="button">Home</a>
+    <input  class="btn btn-secondary mt-2" type="submit" value="Submit">
+    <a class="btn btn-secondary mt-2"  href="{% url 'notes:notes_list' %}" role="button">Home</a>
 </form>
 </div>
 
